@@ -1,0 +1,165 @@
+#page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: nowrap;
+    background-image: url(./bag.jpg);
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+#header {
+    display: flex;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-family: cursive;
+    font-size: 4rem;
+    padding: 20px;
+    margin: 3%;
+    margin-top: 10%;
+    justify-content: center;
+    border: 2px dotted;
+    width: fit-content;
+    align-self: center;
+}
+
+
+/* .image-holder {
+    width: auto;
+    height: 300px;
+} */
+
+.normal {
+    align-self: center;
+    list-style: none;
+    border: 2px solid;
+    background-color: rgb(236, 118, 21);
+    line-height: 30px;
+    width: 35%;
+    text-align: start;
+    margin-top: 5px;
+    margin-left: 32%;
+    font-size: 1.2rem;
+    padding-left: 10px;
+}
+
+.complete {
+    list-style: none;
+    border-radius: 10px;
+    background-color: rgba(235, 212, 212, 0.897);
+    line-height: 30px;
+    width: 98%;
+    text-align: start;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: black;
+    padding-left: 10px;
+    font-size: 1.2rem;
+    font-family: cursive;
+}
+
+#todo-input {
+    font-size: 1.5rem;
+    font-family: cursive;
+    line-height: 20px;
+    width: 34%;
+    float: left;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.error {
+    border: solid red;
+}
+
+.addbtn {
+    display: flex;
+    flex-shrink: 1;
+    font-size: 1.39rem;
+    font-family: cursive;
+    width: 5%;
+    margin-right: 30%;
+    margin-top: 5%;
+    padding: 2px;
+    cursor: pointer;
+    margin-bottom: 1%;
+}
+
+@media screen and (max-width:768) {
+    .addbtn {
+        font-size: 0.5rem;
+    }
+}
+
+.clear-btn {
+    display: flex;
+    font-size: 1rem;
+    font-family: cursive;
+    width: 10%;
+    margin-top: 1%;
+    margin-left: 45%;
+    margin-right: 20%;
+    line-height: 20px;
+    display: none;
+}
+
+#output-list {
+    font-family: cursive;
+    font-size: 1rem;
+}
+
+.del-btn1 {
+    display: inline;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Black Ops One', cursive;
+    color: #FFFFFF;
+    background-color: #4eb5f1;
+    text-align: center;
+    transition: all 0.2s;
+    float: right;
+    cursor: pointer;
+}
+
+.del-btn1:hover {
+    background-color: #4095c6;
+}
+
+.completed-list-heading {
+    font-family: 'Black Ops One', cursive;
+    border: 2px solid;
+    width: fit-content;
+    font-size: 2rem;
+    margin: 1%;
+    cursor: pointer;
+}
+
+#completed {
+    border: 2px solid;
+    border-radius: 10px;
+    display: solid;
+    width: 30%;
+}
+
+.completed-items-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#error-msg {
+    float: left;
+    margin-left: 30%;
+    color: red;
+    border: 1px solid;
+    font-family: bold;
+    margin-bottom: 10px;
+    margin-top: 0;
+    display: none;
+}
+
+.hide {
+    display: none;
+}
