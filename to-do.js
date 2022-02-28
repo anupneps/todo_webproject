@@ -1,27 +1,21 @@
 function main() {
+    // button click event to store the to-do items
     const btn = document.querySelector(".addbtn");
-
     btn.addEventListener("click", addItemList);
 
-
-
-    //  show list of five previously completed item when clicked recently completed items. 
-    // const showCompletedItem = document.querySelector(".completed-list-heading");
-    // showCompletedItem.addEventListener("click", displayItems);
-
+    //  display items when the webpage loads 
     displayItems();
-
 }
-
+// function that display five previously completed items
 function displayItems() {
-
+    // checking if there are any items to display
     var storedItem = localStorage.getItem("todoComplete");
     if (storedItem === null) {
         return;
     }
+    // getting the saved item from local storage, parse them to array and save the last five completed items
     var displayItem = JSON.parse(storedItem);
     var completedlist = displayItem.slice(displayItem.length - 5, displayItem.length)
-
 
     for (let index = 0; index < (completedlist.length); index++) {
         var initialdisplay = completedlist[index];
@@ -29,23 +23,21 @@ function displayItems() {
         let newElement = document.createElement('div');
         newElement.innerHTML = renderCompleteItem(initialdisplay);
         var initialItemEl = newElement.firstElementChild;
-
+        // appending the completed item into newly created div
         document.getElementById('completed').appendChild(initialItemEl).className = 'complete';
     }
 
 }
-
 
 // taking input from form and appending that input to new element for displaying
 
 function addItemList() {
 
     const todoInput = document.getElementById("todo-input");
+    // form validation
     if ((todoInput.value == null || todoInput.value == "") || (todoInput.value.length < 3)) {
         todoInput.classList = "error";
         document.getElementById("error-msg").style.display = "block";
-
-        // return false;
 
     } else {
         todoInput.classList.remove("error");
@@ -55,6 +47,7 @@ function addItemList() {
         tempDivEl.innerHTML = renderListItem(todoInput.value);
         saveData(todoInput.value);
         var el = tempDivEl.firstElementChild;
+        // appending the input item into newly created div
         document.getElementById("output-list").appendChild(el).className = 'normal';
 
 
@@ -71,10 +64,11 @@ function addItemList() {
                 ev.target.parentElement.remove();
             }
         });
-
+        // display the hidden button and adding event to clear the completed items
+        // button to clear all the lists from the element.
         var clearList = document.getElementsByClassName("clear-btn");
         clearList[0].style.display = 'block';
-        // clearList[0].addEventListener('click', removeCompletedList);
+
         clearList[0].addEventListener('click', () => {
             const completedEl = document.getElementById("completed");
 
@@ -82,18 +76,13 @@ function addItemList() {
                 completedEl.removeChild(completedEl.firstChild);
             }
         });
-        // button to clear all the lists from the element.
-
-
     }
-
-    // reset the input value of the input box
+    // reset the input value of the input box ater taking each input
     todoInput.value = null;
-
 }
 
 
-// rending the list items to the new element
+// rending the list items to the new element (div) inorder to display the item list
 
 function renderListItem(text) {
     return `
@@ -104,9 +93,8 @@ function renderListItem(text) {
     `
 }
 
-
+// function to get the list of completed items
 function completedItem(el, index) {
-    //const todoComplete = document.getElementById("todo-input");
 
     const textContentEl = el.querySelector(".item-name");
     const data = textContentEl.textContent; //string value
@@ -115,6 +103,7 @@ function completedItem(el, index) {
     outputdiv.innerHTML = renderCompleteItem(data);
     saveCompetedData(data, index);
 
+    // appending the items into newly created div
     var completedEl = outputdiv.firstElementChild;
     document.getElementById("completed").appendChild(completedEl).className = 'complete';
 
@@ -132,10 +121,10 @@ function renderCompleteItem(text) {
 function saveData(data) {
     if (localStorage.getItem("todoInput") === null) {
         var arr = [data];
-        localStorage.setItem("todoInput", JSON.stringify(arr))
+        localStorage.setItem("todoInput", JSON.stringify(arr)) // converting JS object to JSON string
     } else {
         var list = localStorage.getItem("todoInput");
-        var listItems = JSON.parse(list);
+        var listItems = JSON.parse(list); // parse JSON string and construct JS object
         listItems.push(data);
         localStorage.setItem("todoInput", JSON.stringify(listItems));
     }
