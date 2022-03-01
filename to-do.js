@@ -40,14 +40,14 @@ function displaytodoitems() {
     }
 
     var displayEl = JSON.parse(storedEl);
-    // let newElement = document.getElementById('output-list');
+
     for (let index = 0; index < (displayEl.length); index++) {
         var initialdisplayEl = displayEl[index];
 
         let newElement = document.createElement('div');
         newElement.innerHTML = renderListItem(initialdisplayEl);
         var initialItemEl = newElement.firstElementChild;
-        // appending the completed item into newly created div
+
         document.getElementById('output-list').appendChild(initialItemEl).className = 'normal';
 
         initialItemEl.addEventListener("click", (ev) => {
