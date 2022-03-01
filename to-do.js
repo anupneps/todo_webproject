@@ -5,6 +5,8 @@ function main() {
 
     //  display items when the webpage loads 
     displayItems();
+    displaytodoitems();
+
 }
 // function that display five previously completed items
 function displayItems() {
@@ -27,6 +29,41 @@ function displayItems() {
         document.getElementById('completed').appendChild(initialItemEl).className = 'complete';
     }
 
+}
+
+// function to display the todo items which are incomplete.
+
+function displaytodoitems() {
+    var storedEl = localStorage.getItem("todoInput");
+    if (storedEl === null) {
+        return false;
+    }
+
+    var displayEl = JSON.parse(storedEl);
+    // let newElement = document.getElementById('output-list');
+    for (let index = 0; index < (displayEl.length); index++) {
+        var initialdisplayEl = displayEl[index];
+
+        let newElement = document.createElement('div');
+        newElement.innerHTML = renderListItem(initialdisplayEl);
+        var initialItemEl = newElement.firstElementChild;
+        // appending the completed item into newly created div
+        document.getElementById('output-list').appendChild(initialItemEl).className = 'normal';
+
+        initialItemEl.addEventListener("click", (ev) => {
+            if (ev.target.tagName === "SPAN") {
+                const liElement = ev.target.parentElement;
+                // here the click target is span element, from span we get li using ev.target.parentElement
+                // from li get the parent Node of li which is the div(".output-list")
+                // Now from the parent node it is possible to get the index of the child element(li)
+                // it is necessary to know the index of li element because based on that index the correct item is removed from the 
+                // "todoInput" localstorage data when "done" is clicked.
+                const index = Array.from(liElement.parentNode.children).indexOf(liElement);
+                completedItem(ev.target.parentElement, index);
+                ev.target.parentElement.remove();
+            }
+        });
+    }
 }
 
 // taking input from form and appending that input to new element for displaying
@@ -63,6 +100,7 @@ function addItemList() {
                 completedItem(ev.target.parentElement, index);
                 ev.target.parentElement.remove();
             }
+
         });
         // display the hidden button and adding event to clear the completed items
         // button to clear all the lists from the element.
